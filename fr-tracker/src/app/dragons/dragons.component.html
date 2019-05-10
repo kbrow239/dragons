@@ -1,0 +1,8 @@
+<h2>My Dragons</h2>
+<ul class="dragons">
+  <li *ngFor="let dragon of dragons">
+    <a routerLink='/info/{{dragon.id}}'>
+    <span class="badge">{{dragon.id}}</span> {{dragon.name}}
+  </a>
+  </li>
+</ul>
