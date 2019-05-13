@@ -1,0 +1,16 @@
+<div *ngIf="dragon">
+    <h2>{{dragon.name | uppercase}}'s Details</h2>
+    <div><span class="tag_lables">Id: </span>{{dragon.id}}</div>
+    <div><span class="tag_lables">Name: </span>{{dragon.name}}</div>
+    <div><span class="tag_lables">Gender: </span>{{dragon.gender}}</div>
+    <div><span class="tag_lables">Breed: </span>{{dragon.breed}}</div>
+    <div><span class="tag_lables">G1: </span><span *ngIf="dragon.generation_one">Yes</span> <span *ngIf="!dragon.generation_one">No</span></div>
+    <div><span class="tag_lables">Primary: </span>{{dragon.primary_color}}  {{dragon.primary_gene}}</div>
+    <div><span class="tag_lables">Secondary: </span>{{dragon.secondary_color}}  {{dragon.secondary_gene}}</div>
+    <div><span class="tag_lables">Tertiary: </span>{{dragon.tertiary_color}}  {{dragon.tertiary_gene}}</div>
+    <div><span class="tag_lables">Eye Type: </span>{{dragon.eye_type}}</div>
+    <div><span class="tag_lables">Breeding Pair: </span><span *ngIf="dragon.breeding_pair">Yes</span> <span *ngIf="!dragon.breeding_pair">No</span></div>
+    <div *ngIf="dragon.breeding_pair"><span class="tag_lables">Mate: </span>{{dragon.mate}}</div>
+    <button (click)="goBack()">go back</button>
+</div>
+
