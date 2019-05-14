@@ -18,5 +18,8 @@ export const DRAGONS: Dragon[] = [
     eye_type: 'Swirl', breeding_pair: false, generation_one: false, mate: '',},
     {id: 51186426, name: 'Speirr', gender: 'Male', breed: 'Coatl', primary_color: 'Teal', primary_gene: 'Starmap',
     secondary_color: 'Teal', secondary_gene: 'Constellation', tertiary_color: 'Raspberry', tertiary_gene: 'Stained', flight: 'Lightning',
-    eye_type: 'Common', breeding_pair: false, generation_one: false, mate: '',}
+    eye_type: 'Common', breeding_pair: false, generation_one: false, mate: '',},
+    {id: 51351517, name: 'Mido', gender: 'Female', breed: 'Wildclaw', primary_color: 'Cerulean', primary_gene: 'Starmap',
+    secondary_color: 'Cerulean', secondary_gene: 'Constellation', tertiary_color: 'Platinum', tertiary_gene: 'Stained', flight: 'Lightning',
+    eye_type: 'Common', breeding_pair: true, generation_one: false, mate: 'Speirr',}
 ];
