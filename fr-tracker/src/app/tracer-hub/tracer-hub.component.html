@@ -1,7 +1,7 @@
 <h1>Newest Dragon's</h1>
 <div class="grid grid-pad">
     <a *ngFor="let dragon of dragons" class="col-1-4"
-    routerLink="/info/{{dragon.id}}">
+    routerLink="/dragons/{{dragon.dragonId}}">
   <div class="module dragon">
     <h4>{{dragon.name}}</h4>
   </div>

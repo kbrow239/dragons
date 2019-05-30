@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/hub', pathMatch: 'full' },
   {path: 'hub', component: TracerHubComponent},
   {path: 'dragons', component: DragonsComponent}, 
-  {path: 'info/:id', component: DragonInfoComponent}
+  {path: 'dragons/:id', component: DragonInfoComponent}
 ];
 
 @NgModule({

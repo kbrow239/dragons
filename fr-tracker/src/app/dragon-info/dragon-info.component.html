@@ -1,16 +1,135 @@
 <div *ngIf="dragon">
     <h2>{{dragon.name | uppercase}}'s Details</h2>
-    <div><span class="tag_lables">Id: </span>{{dragon.id}}</div>
-    <div><span class="tag_lables">Name: </span>{{dragon.name}}</div>
-    <div><span class="tag_lables">Gender: </span>{{dragon.gender}}</div>
-    <div><span class="tag_lables">Breed: </span>{{dragon.breed}}</div>
-    <div><span class="tag_lables">G1: </span><span *ngIf="dragon.generation_one">Yes</span> <span *ngIf="!dragon.generation_one">No</span></div>
-    <div><span class="tag_lables">Primary: </span>{{dragon.primary_color}}  {{dragon.primary_gene}}</div>
-    <div><span class="tag_lables">Secondary: </span>{{dragon.secondary_color}}  {{dragon.secondary_gene}}</div>
-    <div><span class="tag_lables">Tertiary: </span>{{dragon.tertiary_color}}  {{dragon.tertiary_gene}}</div>
-    <div><span class="tag_lables">Eye Type: </span>{{dragon.eye_type}}</div>
-    <div><span class="tag_lables">Breeding Pair: </span><span *ngIf="dragon.breeding_pair">Yes</span> <span *ngIf="!dragon.breeding_pair">No</span></div>
-    <div *ngIf="dragon.breeding_pair"><span class="tag_lables">Mate: </span>{{dragon.mate}}</div>
-    <button (click)="goBack()">go back</button>
+    <div *ngIf="!show">
+        <div><span class="tag_lables">Id: </span>{{dragon.dragonId}}</div>
+        <div><span class="tag_lables">Name: </span>{{dragon.name}}</div>
+        <div><span class="tag_lables">Gender: </span>{{dragon.gender}}</div>
+        <div><span class="tag_lables">Breed: </span>{{dragon.breed}}</div>
+        <div><span class="tag_lables">G1: </span><span *ngIf="dragon.generation_one">Yes</span> <span *ngIf="!dragon.generation_one">No</span></div>
+        <div><span class="tag_lables">Primary: </span>{{dragon.primary_color}}  {{dragon.primary_gene}}</div>
+        <div><span class="tag_lables">Secondary: </span>{{dragon.secondary_color}}  {{dragon.secondary_gene}}</div>
+        <div><span class="tag_lables">Tertiary: </span>{{dragon.tertiary_color}}  {{dragon.tertiary_gene}}</div>
+        <div><span class="tag_lables">Eye Type: </span>{{dragon.flight}} {{dragon.eye_type}}</div>
+        <div><span class="tag_lables">Breeding Pair: </span><span *ngIf="dragon.breeding_pair">Yes</span> <span *ngIf="!dragon.breeding_pair">No</span></div>
+        <div *ngIf="dragon.breeding_pair"><span class="tag_lables">Mate: </span>{{dragon.mate}}</div>
+        <button (click)="toggle()">Edit</button>
+        <button (click)="goBack()">Go Back</button>
+    </div>
+    <div class="update-dragon" *ngIf="show">
+    <form (ngSubmit)="saveDragon" #dragonForm="ngForm">
+            <div class="form-group">
+            <label for="name">Dragon Id:</label>
+            <input type="number" class="form-control" id="dragonId" required [(ngModel)]="dragon.dragonId" name="dragonId" #dragonId="ngModel">
+            <div [hidden]="dragonId.valid || dragonId.pristine"
+                   class="alert alert-danger">
+                Id is required
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Dragon Name:</label>
+                <input type="text" class="form-control" id="name" pattern="[a-zA-Z]{2,16}" required [(ngModel)]="dragon.name" name="name" #name="ngModel">
+                <div [hidden]="name.valid || name.pristine"
+                   class="alert alert-danger">
+                Name is required and must be at least 2 characters long and only contain letters
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Dragon Gender:</label>
+                <input type="text" class="form-control" id="gender" pattern="\b(?:male|female|Male|Female)\b" required [(ngModel)]="dragon.gender" name="gender" #gender="ngModel">
+                <div [hidden]="gender.valid || gender.pristine"
+                   class="alert alert-danger">
+                Gender is required and must be male or female
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Dragon Breed:</label>
+                <input type="text" class="form-control" id="breed" required [(ngModel)]="dragon.breed" name="breed" #breed="ngModel">
+                <div [hidden]="breed.valid || breed.pristine"
+                   class="alert alert-danger">
+                Breed is required
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Primary Color:</label>
+                <input type="text" class="form-control" id="primary_color" required [(ngModel)]="dragon.primary_color" name="primary_color" #primary_color="ngModel">
+                <div [hidden]="primary_color.valid || primary_color.pristine"
+                   class="alert alert-danger">
+                Primary Color is required
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Primary Gene:</label>
+                <input type="text" class="form-control" id="primary_gene" required [(ngModel)]="dragon.primary_gene" name="primary_gene" #primary_gene="ngModel">
+                <div [hidden]="primary_gene.valid || primary_gene.pristine"
+                   class="alert alert-danger">
+                Primary Gene is required
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Secondary Color:</label>
+                <input type="text" class="form-control" id="secondary_color" required [(ngModel)]="dragon.secondary_color" name="secondary_color" #secondary_color="ngModel">
+                <div [hidden]="secondary_color.valid || secondary_color.pristine"
+                   class="alert alert-danger">
+                   Secondary Color is required
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Secondary Gene:</label>
+                <input type="text" class="form-control" id="secondary_gene" required [(ngModel)]="dragon.secondary_gene" name="secondary_gene" #secondary_gene="ngModel">
+                <div [hidden]="secondary_gene.valid || secondary_gene.pristine"
+                   class="alert alert-danger">
+                   Secondary Gene is required
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Tertiary Color:</label>
+                <input type="text" class="form-control" id="tertiary_color" required [(ngModel)]="dragon.tertiary_color" name="tertiary_color" #tertiary_color="ngModel">
+                <div [hidden]="tertiary_color.valid || tertiary_color.pristine"
+                   class="alert alert-danger">
+                   Tertiary Color is required
+              </div>
+            <div class="form-group">
+                <label>Tertiary Gene:</label>
+                <input type="text" class="form-control" id="tertiary_gene" required [(ngModel)]="dragon.tertiary_gene" name="tertiary_gene" #tertiary_gene="ngModel">
+                <div [hidden]="tertiary_gene.valid || tertiary_gene.pristine"
+                   class="alert alert-danger">
+                   Tertiary Gene is required
+              </div>
+            </div>
+            </div>
+            <div class="form-group">
+                <label>Flight:</label>
+                <input type="text" class="form-control" id="flight" required [(ngModel)]="dragon.flight" name="flight" #flight="ngModel">
+                <div [hidden]="flight.valid || flight.pristine"
+                   class="alert alert-danger">
+                Flight is required
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Eye Type:</label>
+                <input type="text" class="form-control" id="eye_type" required [(ngModel)]="dragon.eye_type" name="eye_type" #eye_type="ngModel">
+                <div [hidden]="eye_type.valid || eye_type.pristine"
+                   class="alert alert-danger">
+                Eye Type is required
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Generation One?:</label>
+                <input type="checkbox" class="form-control" id="generation_one" optional [(ngModel)]="dragon.generation_one" name="generation_one" #generation_one="ngModel">
+            </div>
+            <div class="form-group">
+                <label>Part of a Breeding Pair?:</label>
+                <input type="checkbox" class="form-control" id="breeding_pair" optional [(ngModel)]="dragon.breeding_pair" name="breeding_pair" #breeding_pair="ngModel">
+            </div>
+            <div class="form-group" *ngIf="dragon.breeding_pair">
+                <label>Mate:</label>
+                <input type="text" class="form-control" id="mate" optional [(ngModel)]="dragon.mate" name="mate" #mate="ngModel">
+            </div>
+            <button type="submit" [disabled]="!dragonForm.form.valid" (click)="saveDragon()">Save Changes</button>
+            <button (click)="goBack()">Go Back</button>
+          </form>
+        </div>
 </div>
+    
+
 
