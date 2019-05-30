@@ -14,6 +14,7 @@ import { DragonService } from '../dragon.service';
 export class DragonInfoComponent implements OnInit {
 
   dragon: Dragon;
+  public show: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,8 +33,17 @@ export class DragonInfoComponent implements OnInit {
       .subscribe(dragon => this.dragon = dragon);
   }
 
+  saveDragon(): void {
+    this.dragonService.updateDragon(this.dragon)
+      .subscribe(() => this.goBack());
+  }
+
   goBack(): void {
     this.location.back();
+  }
+
+  toggle(){
+    this.show = !this.show;
   }
 
 }
